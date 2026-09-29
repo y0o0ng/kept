@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "exportedAt": "2026-09-29T08:00:00Z",
+  "folders": [
+    {"id": "f-work", "name": "Work"},
+    {"id": "f-writing", "name": "Writing"},
+    {"id": "f-code", "name": "Coding"},
+    {"id": "f-study", "name": "Study"}
+  ],
+  "prompts": [
+    {"id": "p01", "title": "Reply to an email politely", "text": "Write a short, polite reply to the email below. Keep it friendly but professional, and end with a clear next step.\n\nEmail:\n[paste email]", "folderId": "f-work", "createdAt": 1788272000000, "updatedAt": 1788358400000, "deletedAt": null, "extra": {}},
+    {"id": "p02", "title": "Meeting notes to action items", "text": "Turn these meeting notes into a list of action items. For each item, add who owns it and the deadline if it was mentioned.\n\nNotes:\n[paste notes]", "folderId": "f-work", "createdAt": 1788358400000, "updatedAt": 1788444800000, "deletedAt": null, "extra": {}},
+    {"id": "p03", "title": "Make it shorter", "text": "Cut this text to about half its length. Keep the main points and my tone. Don't add anything new.\n\n[paste text]", "folderId": "f-writing", "createdAt": 1788444800000, "updatedAt": 1788531200000, "deletedAt": null, "extra": {}},
+    {"id": "p04", "title": "Fix grammar only", "text": "Fix grammar and spelling mistakes in the text below. Don't change my style or rewrite whole sentences.\n\n[paste text]", "folderId": "f-writing", "createdAt": 1788531200000, "updatedAt": 1788617600000, "deletedAt": null, "extra": {}},
+    {"id": "p05", "title": "Blog post outline", "text": "Give me an outline for a blog post about [topic]. Include a title, 5 to 7 section headings, and one line under each heading.", "folderId": "f-writing", "createdAt": 1788617600000, "updatedAt": 1788704000000, "deletedAt": null, "extra": {}},
+    {"id": "p06", "title": "Code review", "text": "Review this code like a senior developer. Point out bugs, unclear names, and anything that could break. Suggest fixes with short code examples.\n\n[paste code]", "folderId": "f-code", "createdAt": 1788704000000, "updatedAt": 1788790400000, "deletedAt": null, "extra": {}},
+    {"id": "p07", "title": "Explain this error", "text": "Explain what this error means in simple words, what usually causes it, and how to fix it.\n\nError:\n[paste error]", "folderId": "f-code", "createdAt": 1788790400000, "updatedAt": 1788876800000, "deletedAt": null, "extra": {}},
+    {"id": "p08", "title": "Write unit tests", "text": "Write unit tests for the function below. Cover normal cases, edge cases, and bad input.\n\n[paste function]", "folderId": "f-code", "createdAt": 1788876800000, "updatedAt": 1788963200000, "deletedAt": null, "extra": {}},
+    {"id": "p09", "title": "Explain like I'm new", "text": "Explain [concept] to someone who is new to it. Use one simple example, then give me 3 quick questions to check if I understood.", "folderId": "f-study", "createdAt": 1788963200000, "updatedAt": 1789049600000, "deletedAt": null, "extra": {}},
+    {"id": "p10", "title": "Summarize a paper", "text": "Summarize this paper in 5 points: the problem, the method, the main result, the limits, and why it matters.\n\n[paste abstract or text]", "folderId": "f-study", "createdAt": 1789049600000, "updatedAt": 1789136000000, "deletedAt": null, "extra": {}}
+  ]
+}

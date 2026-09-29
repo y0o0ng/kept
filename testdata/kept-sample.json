@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "exportedAt": "2026-09-29T00:00:00.000Z",
+  "folders": [
+    {
+      "id": "f1",
+      "name": "Writing"
+    },
+    {
+      "id": "f2",
+      "name": "Coding"
+    },
+    {
+      "id": "f3",
+      "name": "Work"
+    }
+  ],
+  "prompts": [
+    {
+      "id": "p1",
+      "title": "Email reply draft",
+      "text": "Write a polite, concise reply to the email below. Keep it under 120 words and end with a clear next step.\n\nEmail:\n{paste email here}",
+      "folderId": "f1",
+      "createdAt": 1788912000000,
+      "updatedAt": 1788912000000,
+      "deletedAt": null,
+      "extra": {}
+    },
+    {
+      "id": "p2",
+      "title": "Rewrite for clarity",
+      "text": "Rewrite the text below so it is clear and easy to read. Keep my meaning and my tone. Do not add new facts.\n\nText:\n{paste text here}",
+      "folderId": "f1",
+      "createdAt": 1789084800000,
+      "updatedAt": 1789084800000,
+      "deletedAt": null,
+      "extra": {}
+    },
+    {
+      "id": "p3",
+      "title": "Blog post outline",
+      "text": "Create an outline for a blog post about {topic}.\n- Audience: {audience}\n- 5 sections, each with a one-line summary\n- Suggest a title and three alternatives",
+      "folderId": "f1",
+      "createdAt": 1789344000000,
+      "updatedAt": 1789344000000,
+      "deletedAt": null,
+      "extra": {}
+    },
+    {
+      "id": "p4",
+      "title": "Code review request",
+      "text": "Review the code below like a careful senior engineer.\n1. Point out bugs or risky edge cases\n2. Suggest simpler ways to write it\n3. Keep feedback specific and short\n\nCode:\n{paste code here}",
+      "folderId": "f2",
+      "createdAt": 1789603200000,
+      "updatedAt": 1789603200000,
+      "deletedAt": null,
+      "extra": {}
+    },
+    {
+      "id": "p5",
+      "title": "Explain this error",
+      "text": "I get this error. Explain in plain words what it means, the most likely cause, and how to fix it. Ask me for more info if you need it.\n\nError:\n{paste error here}\n\nRelevant code:\n{paste code here}",
+      "folderId": "f2",
+      "createdAt": 1789862400000,
+      "updatedAt": 1789862400000,
+      "deletedAt": null,
+      "extra": {}
+    },
+    {
+      "id": "p6",
+      "title": "Write unit tests",
+      "text": "Write unit tests for the function below. Cover normal cases, edge cases, and invalid input. Use {test framework}.\n\n{paste function here}",
+      "folderId": "f2",
+      "createdAt": 1790035200000,
+      "updatedAt": 1790035200000,
+      "deletedAt": null,
+      "extra": {}
+    },
+    {
+      "id": "p7",
+      "title": "Meeting notes summary",
+      "text": "Summarize these meeting notes into:\n- Decisions made\n- Action items (owner + due date)\n- Open questions\n\nNotes:\n{paste notes here}",
+      "folderId": "f3",
+      "createdAt": 1790208000000,
+      "updatedAt": 1790208000000,
+      "deletedAt": null,
+      "extra": {}
+    },
+    {
+      "id": "p8",
+      "title": "Weekly status update",
+      "text": "Turn my rough notes into a short weekly status update for my manager. Use three headings: Done, In progress, Blocked.\n\nNotes:\n{paste notes here}",
+      "folderId": "f3",
+      "createdAt": 1790467200000,
+      "updatedAt": 1790467200000,
+      "deletedAt": null,
+      "extra": {}
+    },
+    {
+      "id": "p9",
+      "title": "Interview questions",
+      "text": "Give me 10 interview questions for a {role} position, from easy to hard.",
+      "folderId": "f3",
+      "createdAt": 1788048000000,
+      "updatedAt": 1788048000000,
+      "deletedAt": 1790553600000,
+      "extra": {}
+    },
+    {
+      "id": "p10",
+      "title": "Social media captions",
+      "text": "Write 5 short, friendly captions for a post about {topic}. No hashtags.",
+      "folderId": "f1",
+      "createdAt": 1788480000000,
+      "updatedAt": 1788480000000,
+      "deletedAt": 1790553600000,
+      "extra": {}
+    }
+  ]
+}

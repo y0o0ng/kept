@@ -1,0 +1,5 @@
+[
+  { "title": "Blog outline", "text": "Write an outline for a blog post about {topic}.\nInclude 5 sections.", "folder": "Writing", "description": "Outline helper", "tags": ["blog", "outline"] },
+  { "title": "한글 😀 프롬프트", "text": "다음 글을 요약해줘 🙂", "folder": "Korean" },
+  { "title": "No folder", "text": "Prompt without a folder." }
+]

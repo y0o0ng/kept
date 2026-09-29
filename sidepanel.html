@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kept</title>
+<style>
+  /* 색: 라이트/다크 자동. 강조색은 --accent 하나만. 여백은 8px 단위(4px는 반 단위) */
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff; --fg: #1f1f1f; --muted: #6b6b70; --line: #e2e2e6; --surface: #f4f4f6;
+    --accent: #4f46e5; --accent-fg: #ffffff; --accent-tint: #4f46e51a;
+    --ok: #1a7f37; --warn: #d97706; --idle: #9a9aa2;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1c1c1e; --fg: #ececee; --muted: #9a9aa2; --line: #38383d; --surface: #2a2a2e;
+      --accent: #8b85ff; --accent-fg: #14141a; --accent-tint: #8b85ff26;
+      --ok: #3fb950; --warn: #f0a030; --idle: #6b6b70;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { font: 13px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; margin: 0; padding: 16px; background: var(--bg); color: var(--fg); }
+
+  /* 공통 컨트롤 */
+  button, input, select, textarea { font: inherit; color: inherit; }
+  button { background: transparent; border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; cursor: pointer; }
+  button:hover:not(:disabled) { background: var(--surface); }
+  button:disabled { opacity: .45; cursor: default; }
+  button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-fg); }
+  button.primary:hover:not(:disabled) { background: var(--accent); filter: brightness(1.08); }
+  button.icon { width: 32px; height: 32px; padding: 0; display: inline-flex; align-items: center; justify-content: center; flex: none; }
+  button.icon svg { width: 16px; height: 16px; }
+  input[type=search], input[type=text], select, textarea, #fTitle { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 4px 8px; }
+  input[type=checkbox] { accent-color: var(--accent); margin: 4px 0 0; }
+  /* 키보드 포커스 표시 */
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  .row { display: flex; gap: 8px; margin-bottom: 8px; align-items: center; }
+  .row > input, .row > select { flex: 1; min-width: 0; height: 32px; }
+  /* 백업 상태: 이 제품의 핵심이라 본문 색·굵기로 눈에 띄게. 점 색은 상태 표시 전용(강조색과 별개) */
+  #backupLine { display: flex; gap: 8px; align-items: center; font-weight: 500; margin: 0 0 8px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; flex: none; background: var(--idle); }
+  .dot.ok { background: var(--ok); }
+  .dot.warn { background: var(--warn); }
+  #banner { background: var(--accent-tint); border-radius: 6px; padding: 8px; margin-bottom: 8px; display: flex; gap: 8px; align-items: center; justify-content: space-between; }
+  #trashHead { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+  #trashHead strong { flex: 1; }
+  /* 좁은 폭에서 버튼·라벨 글자가 두 줄로 꺾이지 않게: 통째로 다음 줄로 넘어감 */
+  button, #bulk label { white-space: nowrap; }
+  #bulk { justify-content: space-between; flex-wrap: wrap; }
+  #bulk label { display: flex; gap: 8px; align-items: center; color: var(--muted); }
+
+  /* 목록 */
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { display: grid; grid-template-columns: 16px 1fr; gap: 8px; padding: 8px 0; border-top: 1px solid var(--line); }
+  .body { min-width: 0; }
+  .title { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .preview { color: var(--muted); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .btns { grid-column: 2; display: flex; gap: 8px; }
+  .btns button { padding: 0 8px; font-size: 12px; }
+
+  #empty { color: var(--muted); padding: 32px 0; text-align: center; }
+  #empty p { margin: 0 0 16px; }
+  #emptyActions { display: flex; gap: 8px; justify-content: center; }
+  #foot { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 8px; }
+  /* 후원 링크: 보조 텍스트 수준으로만. 버튼처럼 보이지 않게 */
+  #support { flex-basis: 100%; font-size: 12px; color: var(--muted); text-decoration: none; }
+  #support:hover { text-decoration: underline; }
+
+  dialog { width: calc(100% - 32px); max-width: 480px; background: var(--bg); color: var(--fg); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+  dialog::backdrop { background: #0006; }
+  dialog form { display: flex; flex-direction: column; gap: 8px; }
+  dialog .row { margin: 0; flex-direction: row-reverse; justify-content: flex-start; }
+  dialog textarea { min-height: 160px; resize: vertical; }
+
+  #toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--fg); color: var(--bg);
+           padding: 4px 16px; border-radius: 16px; opacity: 0; transition: opacity .15s; pointer-events: none; max-width: calc(100% - 32px); text-align: center; }
+  #toast.on { opacity: 1; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+  <div id="main">
+    <div class="row">
+      <input id="q" type="search" placeholder="Search..." aria-label="Search prompts" autofocus>
+      <button id="new" class="primary">+ New</button>
+    </div>
+    <div id="backupLine"><span id="backupDot" class="dot idle" aria-hidden="true"></span><span id="backupText"></span></div>
+    <div class="row">
+      <select id="folder" aria-label="Folder"></select>
+      <button id="fNew" class="icon" title="New folder" aria-label="New folder"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M8 3v10M3 8h10"/></svg></button>
+      <button id="fRename" class="icon" title="Rename folder" aria-label="Rename folder"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10.5 3.5l2 2L5 13H3v-2z"/></svg></button>
+      <button id="fDel" class="icon" title="Delete folder" aria-label="Delete folder"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4.5h10M6.5 4.5V3h3v1.5M4.5 4.5l.5 8.5h6l.5-8.5"/></svg></button>
+    </div>
+    <div id="banner" hidden><span id="bannerText"></span><button id="backup" class="primary">Back up now</button></div>
+  </div>
+  <div id="trashHead" hidden><strong>Trash</strong><button id="back">← Back</button><button id="emptyTrash">Empty trash</button></div>
+  <div id="bulk" class="row" hidden><label><input id="selAll" type="checkbox"> Select all</label><button id="restoreSel">Restore selected</button><button id="delSel">Delete selected</button></div>
+  <ul id="list"></ul>
+  <div id="empty">
+    <p id="emptyMsg">Loading…</p>
+    <div id="emptyActions" hidden><button id="emptyNew" class="primary">+ New</button><button id="emptyImport">Import</button></div>
+  </div>
+  <div id="foot"><button id="export">Export</button><button id="import">Import</button><button id="trash">Trash</button>
+    <input id="file" type="file" accept=".json,.csv,application/json,text/csv" hidden>
+    <a id="support" href="https://ko-fi.com/rnlcksgxk" target="_blank" rel="noopener noreferrer">☕ Buy me a coffee</a></div>
+
+  <dialog id="dlg" aria-label="Edit prompt">
+    <form method="dialog" id="form">
+      <input id="fTitle" placeholder="Title" aria-label="Title">
+      <textarea id="fText" placeholder="Prompt text" aria-label="Prompt text"></textarea>
+      <select id="fFolder" aria-label="Folder"></select>
+      <!-- Save를 DOM 앞에 둠: 제목 입력창에서 Enter를 누르면 첫 버튼(Save)이 실행됨. 화면에는 row-reverse로 오른쪽에 표시 -->
+      <div class="row"><button value="ok" class="primary">Save</button><button value="cancel" formnovalidate>Cancel</button></div>
+    </form>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>

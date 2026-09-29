@@ -1,0 +1,6 @@
+[
+  {"id": "a1", "title": "Make it shorter", "text": "Cut this text to about half its length. Keep the main points and my tone. Don't add anything new.\n\n[paste text]", "description": "", "tags": ["editing"], "folder": "Writing", "lastChanged": 1789568000000},
+  {"id": "a2", "title": "Explain this error", "text": "Explain what this error means in simple words, what usually causes it, and how to fix it.\n\nError:\n[paste error]", "description": "", "tags": ["debug"], "folder": "Coding", "lastChanged": 1789654400000},
+  {"id": "a3", "title": "Translate naturally", "text": "Translate the text below into [language]. Make it sound natural, not word for word.\n\n[paste text]", "description": "For emails and chats", "tags": ["translation"], "folder": "Writing", "lastChanged": 1789740800000},
+  {"id": "a4", "title": "Plan my week", "text": "Help me plan my week. Here are my tasks and deadlines:\n[list]\n\nPut the most important things first and leave some free time.", "description": "", "tags": ["planning"], "folder": "Personal", "lastChanged": 1789827200000}
+]
